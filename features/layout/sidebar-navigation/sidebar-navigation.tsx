@@ -90,7 +90,9 @@ export function SidebarNavigation() {
               iconSrc="/icons/arrow-left.svg"
               isCollapsed={isSidebarCollapsed}
               onClick={() => toggleSidebar()}
-              className={styles.collapseMenuItem}
+              className={`${styles.collapseMenuItem} ${
+                isSidebarCollapsed ? styles.rotateIcon : ""
+              } `}
             />
           </ul>
         </nav>
