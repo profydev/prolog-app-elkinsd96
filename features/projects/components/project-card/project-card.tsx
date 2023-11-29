@@ -21,7 +21,7 @@ const statusColors = {
   [ProjectStatus.error]: BadgeColor.error,
 };
 
-export const statusMessages = {
+const statusMessages = {
   [ProjectStatus.info]: "Stable",
   [ProjectStatus.warning]: "Warning",
   [ProjectStatus.error]: "Critical",
@@ -29,8 +29,6 @@ export const statusMessages = {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const { name, language, numIssues, numEvents24h, status } = project;
-
-  console.log("Project status", ProjectStatus);
 
   return (
     <div className={styles.container}>

@@ -1,6 +1,5 @@
 import mockProjects from "../fixtures/projects.json";
 import { ProjectStatus } from "@api/projects.types";
-import { statusMessages } from "./../../features/projects/components/project-card/project-card";
 
 describe("Project List", () => {
   beforeEach(() => {
@@ -23,6 +22,11 @@ describe("Project List", () => {
 
     it("renders the projects", () => {
       const languageNames = ["React", "Node.js", "Python"];
+      const statusMessages = {
+        [ProjectStatus.info]: "Stable",
+        [ProjectStatus.warning]: "Warning",
+        [ProjectStatus.error]: "Critical",
+      };
 
       // get all project cards
       cy.get("main")
