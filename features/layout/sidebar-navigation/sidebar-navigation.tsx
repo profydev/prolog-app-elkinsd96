@@ -36,6 +36,7 @@ export function SidebarNavigation() {
         <header className={styles.header}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
+            data-cy="nav-logo-small"
             src="/icons/logo-small.svg"
             alt="logo"
             className={classNames(
@@ -44,6 +45,7 @@ export function SidebarNavigation() {
             )}
           />
           <img
+            data-cy="nav-logo-large"
             src="/icons/logo-large.svg"
             alt="logo"
             className={classNames(
