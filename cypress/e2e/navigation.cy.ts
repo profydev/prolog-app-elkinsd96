@@ -55,15 +55,15 @@ describe("Sidebar Navigation", () => {
       cy.get("nav").contains("Collapse").click();
 
       // check that small logo is shown
-      cy.get("img[src='/icons/logo-small.svg']").should("be.visible");
-      cy.get("img[src='/icons/logo-large.svg']").should("not.be.visible");
+      cy.get("[data-cy='nav-logo-small']").should("be.visible");
+      cy.get("[data-cy='nav-logo-large']").should("not.be.visible");
 
       // switch to landscape mode that uses the mobile menu
       cy.viewport(900, 1025);
 
       // check that large logo is shown'
-      cy.get("img[src='/icons/logo-small.svg']").should("not.be.visible");
-      cy.get("img[src='/icons/logo-large.svg']").should("be.visible");
+      cy.get("[data-cy='nav-logo-small']").should("not.be.visible");
+      cy.get("[data-cy='nav-logo-large']").should("be.visible");
     });
   });
 
