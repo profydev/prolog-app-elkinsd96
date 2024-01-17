@@ -1,9 +1,51 @@
 import { ButtonHTMLAttributes } from "react";
-import classNames from "classnames";
+import { UnstyledButton } from "./unstyledButton";
 import styles from "./button.module.scss";
+import classNames from "classnames";
 
-export function Button(props: ButtonHTMLAttributes<HTMLButtonElement>) {
+export enum ButtonSize {
+  small = "sm",
+  medium = "md",
+  large = "lg",
+  xlarge = "xl",
+}
+
+export enum ButtonColor {
+  Primary = "primary",
+  Secondary = "secondary",
+  Gray = "gray",
+  Error = "error",
+}
+
+export enum ButtonVariant {
+  Default = "default",
+  Empty = "empty",
+  iconOnly = "iconOnly",
+}
+
+type ButtonProps = {
+  size?: ButtonSize;
+  color?: ButtonColor;
+  variant?: ButtonVariant;
+} & ButtonHTMLAttributes<HTMLButtonElement>;
+
+export function Button({
+  className,
+  size = ButtonSize.medium,
+  color = ButtonColor.Primary,
+  variant = ButtonVariant.Default,
+  ...props
+}: ButtonProps) {
   return (
-    <button {...props} className={classNames(styles.button, props.className)} />
+    <UnstyledButton
+      className={classNames(
+        styles.button,
+        styles[size],
+        styles[color],
+        styles[variant],
+        className,
+      )}
+      {...props}
+    />
   );
 }
