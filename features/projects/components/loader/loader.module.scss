@@ -1,0 +1,22 @@
+.loaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  display: inline-block;
+  height: 4rem;
+  width: 4rem;
+  animation: loading-spinner 1s linear infinite;
+
+  @keyframes loading-spinner {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
