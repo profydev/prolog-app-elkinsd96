@@ -20,6 +20,21 @@ describe("Project List", () => {
       cy.viewport(1025, 900);
     });
 
+    it("renders loading icon", () => {
+      cy.intercept("GET", "https://prolog-api.profy.dev/project", {
+        delayMs: 100,
+        fixture: "projects.json",
+      });
+
+      cy.visit(`http://localhost:3000/dashboard`);
+
+      // Check if the loader is visible
+      cy.get(`[data-cy="loader"]`).should("be.visible");
+
+      // Check if the loader is not visible
+      cy.get(`[data-cy="loader"]`).should("not.exist");
+    });
+
     it("renders the projects", () => {
       const languageNames = ["React", "Node.js", "Python"];
       const statusMessages = {
