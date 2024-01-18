@@ -3,7 +3,7 @@ import styles from "./loader.module.scss";
 
 export function Loader() {
   return (
-    <div className={styles.loaderContainer}>
+    <div data-cy="loader" className={styles.loaderContainer}>
       <img
         className={styles.loader}
         src="/icons/loading-circle.svg"
