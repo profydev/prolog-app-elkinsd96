@@ -35,6 +35,38 @@ describe("Project List", () => {
       cy.get(`[data-cy="loader"]`).should("not.exist");
     });
 
+    context("serror handling", () => {
+      beforeEach(() => {
+        cy.visit("http://localhost:3000/dashboard");
+      });
+
+      it("renders error message", () => {
+        cy.intercept("GET", "https://prolog-api.profy.dev/project", {
+          statusCode: 500,
+          body: { error: "Internal Server Error" },
+        });
+
+        cy.wait(7000);
+
+        cy.get('[data-cy="alert"]').should("be.visible");
+      });
+
+      it("reloads page after error", () => {
+        cy.intercept("GET", "https://prolog-api.profy.dev/project", {
+          statusCode: 500,
+          body: { error: "Internal Server Error" },
+        });
+
+        cy.wait(7000);
+
+        cy.get('[data-cy="alert-button"]').click();
+
+        cy.intercept("GET", "https://prolog-api.profy.dev/project", (req) => {
+          req.reply();
+        });
+      });
+    });
+
     it("renders the projects", () => {
       const languageNames = ["React", "Node.js", "Python"];
       const statusMessages = {
