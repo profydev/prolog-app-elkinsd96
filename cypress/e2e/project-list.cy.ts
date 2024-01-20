@@ -35,6 +35,30 @@ describe("Project List", () => {
       cy.get(`[data-cy="loader"]`).should("not.exist");
     });
 
+    context("serror handling", () => {
+      it("renders error message and reloads page", () => {
+        cy.intercept("GET", "https://prolog-api.profy.dev/project", {
+          status: 400,
+          forceNetworkError: true,
+          retryOnNetworkFailure: false,
+        });
+
+        cy.visit("http://localhost:3000/dashboard");
+
+        cy.get(`[data-cy="loader"]`).should("be.visible");
+
+        cy.get(`[data-cy="loader"]`, { timeout: 10000 }).should("not.exist");
+
+        cy.get('[data-cy="alert"]').should("be.visible");
+
+        cy.get('[data-cy="alert-button"]').click();
+
+        cy.intercept("GET", "https://prolog-api.profy.dev/project", (req) => {
+          req.reply();
+        });
+      });
+    });
+
     it("renders the projects", () => {
       const languageNames = ["React", "Node.js", "Python"];
       const statusMessages = {

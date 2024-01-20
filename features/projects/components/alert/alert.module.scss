@@ -1,0 +1,35 @@
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+@use "@styles/shadow";
+
+.alertContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: space.$s4;
+  border-radius: 0.5rem;
+  border: 1px solid color.$error-300;
+  background: color.$error-25;
+}
+
+.alert {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.alertIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.alertText {
+  color: color.$error-700;
+  font-size: font.$text-sm-medium;
+}
+
+.arrowIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
